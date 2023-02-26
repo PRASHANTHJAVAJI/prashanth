@@ -1,270 +1,87 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>PRASHANTH JAVAJI</title>
     <meta charset="UTF-8">
-</head>
-<meta name="theme-color" content="gray">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<style>
-    body{
-        font-size:20px;
-        font-family:Arial, Helvetica, sans-serif;
-        text-align:justify;
-        background-image: url("https://cdn.pixabay.com/photo/2017/12/28/11/54/default-3045043_960_720.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: scroll;
-        color: white;
-        margin-top: 25px;
-    }
-    #container {
-                width: inherit;
-                height: inherit;
-                margin: 0;
-                padding: 0;
-            }
-    div{
-        width:fit-content;
-        text-align: justify;
-        margin:20px;
-        padding:5px 10px;
-    }
-    p{
-        margin:5px;
-        padding:5px;
-    }
-    a{color:aquamarine;}
-    a:visited{color:aquamarine}
-    a:hover{color:blue}
-    ul{
-        list-style-type: square;
-        list-style-position: inside;
-    }
-    marquee{
-        color:white;border-style: inset;border-color: red;border-radius: 10px;
-    }
-    #block1,#block2,#block3,#block4,#block5,#tablex{
-        padding: 15px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 1350px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 20px 0px;
-        border: 1px solid;
-  box-shadow: 5px 10px 8px 10px #888888;
-    }
-
-    #block1{
-        background-image: url("https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGFyayUyMHRoZW1lfGVufDB8fDB8fA%3D%3D&w=1000&q=80");
-        /*border-image: url("https://www.w3schools.com/css/border.png") 30% round; */
-        }
-    #block2{background-image: url("https://c4.wallpaperflare.com/wallpaper/736/26/420/heartbeat-heart-ekg-minimalism-wallpaper-preview.jpg");}
-    #block3{background-image: url("https://engageemployee.com/wp-content/uploads/2016/08/Data2-1.jpg");}
-    #block4{background-image: url("https://i.pinimg.com/736x/42/84/71/428471d4f6c147b88ee7c2cff3efc4cb.jpg");}
-    #block5{background-image: url("https://i.pinimg.com/736x/9b/87/d9/9b87d990388c52f450811e304ed81d13.jpg");}
-    #tablex{background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbqwjBP3MVApahCtAy-rkDUyQLAsUkFCasQw&usqp=CAU");}
-    #blockx li{
-        display: inline;
-        padding: 5px;
-    }
-    #blockx a{
-        color: white;
-    }
-    #parent-block{
-        position: relative;
-    }
-    button{
-        padding: 10px;
-    }
-    button:hover{
-        background: coral;
-    }
-   #thank {
-  width: fit-content;
-  background: red;
-  position: relative;
-  border-radius: 20px;
-  animation: mymove 5s infinite;
-  animation-direction: alternate;
-}
-
-@keyframes mymove {
-  from {left: 250px;}
-  to {left: 750px;background: coral;}
-}
-    img{
-        float: right;
-    }
-    table,td,th{
-        border:2px solid whitesmoke;
-        text-align: center;
-        padding: 0px;
-    }
-    td,th{
-        padding: 5px;
-    }
-    th{
-        height: 50px;
-        background-color: #04AA6D;
-        color: white;
-    }
-    table{
-        width:100%;;
-        border-collapse: collapse;
-    }
-    tr:hover{
-        background-color: coral;
-    }
-    tr:nth-child(even) {background-color: gray;}
-    input{
-        caret-color: orchid;
-    }
-    input, textarea, select {
-         border: 1px solid black;
-    }
-    html{
-        scroll-behavior: smooth;
-    }
-    button{
-        background-color: red;
-        border: none;
-        border-radius: 16px;
-        color: white;
-        cursor: pointer;
-        font-size: auto;
-        line-height: auto;
-        font-size: medium;
-    }
-    #myBtn {
-        text-align: center;
-        font-size: medium;
-        position: fixed;
-        bottom: 5px;
-        float: right;
-        right: 1%;
-        left: 90%;
-        max-width: 100px;
-        width: 100%;
-        border-color: rgba(85, 85, 85, 0.2);
-        background-color: rgb(100,100,100);
-        padding: .5px;
-        border-radius: 4px;
-    }
-    #myBtn:hover {
-        background-color: #7dbbf1;
-    }
-</style>
-<script>
-    function scrollToTop() {
-        window.scrollTo(0, 0);
-    }
-</script>
-<div id="container">
+  <link rel="stylesheet" href="style.css">
+    <title>Prashanth</title>
+</head>
 <body>
-    <marquee direction="right">👋🏼Welcome to my page👋🏼</marquee>
-<div id="parent-block">
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-12">
+            <Nav id="header">
+                <Ul>
+                  <Li><A Href="#about">About</A></Li>
+                  <Li><A Href="#achivements">Achivements</A></Li>
+                  <Li><A Href="#Skills">Skills</A></Li>
+                  <Li><A Href="#Exp">Experience</A></Li>
+                  <Li><A Href="#Info">Contact</A></Li>
+                </Ul>
+              </Nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-12">
+            <h1 style="border-style: double;border-radius: 10px;text-align: center;">Prashanth Javaji</h1></div>
+        </div>
+ 
+    <div class="row">
+        <div class="col col-lg-12">
+            <h3 id="about">About me:</h3>
+<img src="Subject.png" alt="" width="400" height="400">
+<p>Hi, my name is Prashanth and I am a student pursuing a degree in Computer Science Engineering with a specialization in Artificial Intelligence and Machine Learning at SRMIST. 
+    I am known for my ability to work effectively under pressure, which makes me an asset to any team. 
+    As a student with a passion for technology, I have a strong interest in cutting-edge solutions and innovation, particularly in the field of AI. 
+    I am eager to apply my knowledge and skills to tackle real-world challenges and make a positive impact in the tech industry.</p>
+        </div>
+    </div>
+
     
-    <h1 style="border-style: double;border-radius: 10px;text-align: center;text-shadow: 2px 2px 5px red;">Prashanth Javaji</h1>
     
-    <br>
-    <img src="sss-sm.jpg" alt="me"/>
-    <ul>
-        <li><a href="mailto:pj3833@srmist.edu.in">pj3833@srmist.edu.in</a></li>
-        <li><a href="linkedin.com/in/prashanth-javaji-5268861b8">Linkedin profile</a></li>
-    </ul>
-    <br>
-    <div id="blockx">
-    <h3 style="text-align: center;text-decoration: underline;">Go to Sections directly</h3>
-    <ul style="text-align: center;list-style-type: none; padding:10px;">
-        <li><button><a href="#block1">Summary</a></button></li>
-        <li><button><a href="#block2">Strengths</a></button></li>
-        <li><button><a href="#block3">Personal Info</a></button></li>
-        <li><button><a href="#block4">Experience</a></button></li>
-        <li><button><a href="#tablex">Licence and Certificates</a></button></li>
-        <li><button><a href="#block5">Skills</a></button></li>
-</ul>
-</div>
-<div id="block1">
-<h2>Summary:</h2>
-
-<p>Currently I'm pursuing my graduation in SRM college and I've taken computer science and engineering with specialisation in Artificial intelligence and machine learning.</p>
-
-<p>I'm strong in problem solving and also I've completed my C, C++, Data Structures and basics of Python programming.</p>
-
-<p>My future goal is get a job in MNC company</p>
-</div>
-<br>
-<div id="block2">
-<h3>Strengths:</h3>
-<ol>
-    <li>Creativity.</li>
-    <li>Problem-solving skills.</li>
-    <li>Teamwork and collaboration.</li>
-    <li>Communication skills.</li>
-    <li>Ability to work under pressure.</li>
-</ol>
-</div>
-<br>
-<div id="block3">
-<h3>Personal Information:</h3>
-<ul style="list-style-type: square;">
-    <li>Address: <br> Konijerla,Khammam,Telangana</li>
-    <li>Mobile no: <br> 7981067903</li>
-    <li>Email: <br> pj3833@srmist.edu.in</li>
-    <li>LinkedIn: <br> <a href="http://linkedin.com/in/prashanth-javaji-5268861b8">http://linkedin.com/in/prashanth-javaji-5268861b8</a> </li>
-</ul>
-</div>
-<br>
-<div id="block4">
-<br>
-<h3>Experience:</h3>
-<ul>
-    <li>Finance Committee Head Aaruush, SRM University</li>
-    <li>Sri Ramanujan Mathematics Club, SRM University</li>
-</ul>
-</div>
-<br>
-<div id="tablex">
-<table>
-    <h4 style="text-align: center;"> Licence & Certificates</h4>
-    <tr>
-    <th>Certificates</th>
-    <th>Source</th>
-    </tr>
-    <tr>
-        <td> <a href="https://drive.google.com/file/d/1p8nOPkM1b78PjU3XyzOYSsRld33UaqKT/view?usp=sharing"target="_blank"> Basics of python programming</a></td>
-        <td>Indian Institute of Technology, Kharagpur</td>
-    </tr>
-    <tr>
-        <td> <a href="https://drive.google.com/drive/folders/1eTMjyY9l9YLNcSEl4Wn3AtQ0cRGAtaJB?usp=sharing"target="_blank"> C-language</a> </td>
-        <td>SRM University (Sri Ramaswamy Memorial University)</td>
-    </tr>
-    <tr>
-        <td><a href="https://drive.google.com/file/d/1IdyzW-D1xMt2ZD8qx3B796zGvPzJuoJU/view?usp=sharing"target="_blank"> C++-language</a></td>
-        <td>SRM University (Sri Ramaswamy Memorial University)</td>
-    </tr>
-    <tr>
-        <td><a href="https://drive.google.com/file/d/1O-zSoF1d5CEMV-R8LD1Yq6Vo0p8GGrEP/view?usp=sharing"target="_blank"> C++-language</a></td>
-        <td>Udemy</td>
-    </tr>
-	<tr>
-        <td><a href="https://drive.google.com/file/d/1EE7QCa1EmT8PsjM5BerU8Yx_dzvMYk_q/view?usp=share_link"target="_blank"> IOS Development</a></td>
-        <td>Coursera</td>
-    </tr>
-	<tr>
-        <td><a href="https://drive.google.com/file/d/1jA-2W9K-uFkrFsYR_DuZOUX-DXDSoG6g/view?usp=share_link"target="_blank">Machine Learning</a></td>
-        <td>Amazon Web Services(AWS)</td>
-    </tr>
-</table>
-</div>
-<br>
-<div id="block5">
-<h3>Skills:</h3>
+    <div class="row" id="certif">
+        <div class="col col-lg-12">
+            <div class="table" id="myTable">
+                <table>
+                    <h3 style="text-align: center; color: white;" id="achivements"> Achivements</h3>
+                    <tr>
+                    <th>Certificates</th>
+                    <th>Source</th>
+                    </tr>
+                    <tr>
+                        <td> <a href="https://drive.google.com/file/d/1p8nOPkM1b78PjU3XyzOYSsRld33UaqKT/view?usp=sharing"target="_blank"> Basics of python programming</a></td>
+                        <td>Indian Institute of Technology, Kharagpur</td>
+                    </tr>
+                    <tr>
+                        <td> <a href="https://drive.google.com/drive/folders/1eTMjyY9l9YLNcSEl4Wn3AtQ0cRGAtaJB?usp=sharing"target="_blank"> C-language</a> </td>
+                        <td>SRM University (Sri Ramaswamy Memorial University)</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://drive.google.com/file/d/1IdyzW-D1xMt2ZD8qx3B796zGvPzJuoJU/view?usp=sharing"target="_blank"> C++-language</a></td>
+                        <td>SRM University (Sri Ramaswamy Memorial University)</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://drive.google.com/file/d/1O-zSoF1d5CEMV-R8LD1Yq6Vo0p8GGrEP/view?usp=sharing"target="_blank"> C++-language</a></td>
+                        <td>Udemy</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://drive.google.com/file/d/1EE7QCa1EmT8PsjM5BerU8Yx_dzvMYk_q/view?usp=share_link"target="_blank"> IOS Development</a></td>
+                        <td>Coursera</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://drive.google.com/file/d/1jA-2W9K-uFkrFsYR_DuZOUX-DXDSoG6g/view?usp=share_link"target="_blank">Machine Learning</a></td>
+                        <td>Amazon Web Services(AWS)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-12">
+            <h3 id="Skills">Skills:</h3>
 <ul>
     <li>Communication</li>
     <li>C (Programming Language)</li>
@@ -274,14 +91,45 @@
     <li>Business Process</li>
     <li>HTML</li>
 </ul>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-6 col-lg-6">
+            <h3>Strengths:</h3>
+            <ol>
+                <li>Creativity.</li>
+                <li>Problem-solving skills.</li>
+                <li>Teamwork and collaboration.</li>
+                <li>Communication skills.</li>
+                <li>Ability to work under pressure.</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-12">
+            <h3 id="Exp">Experience:</h3>
+<ul>
+    <li class="Title">  Finance Committee Head Aaruush, SRM University</li> <br>
+    <p>As the Finance Committee Head for 2 years, I was responsible for managing the budget and financial operations for the student council. I utilized my ability to handle pressure and successfully conducted 10 events by leveraging my skills in event planning and execution. My efforts resulted in successful event execution within budget, receiving positive feedback from attendees</p>
+    <li>Sri Ramanujan Mathematics Club, SRM University</li>
+</ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 col-lg-6">
+            <h3 id="Info">Personal Information:</h3>
+<ul style="list-style-type: square;">
+    <li>Address: <br> Konijerla,Khammam,Telangana</li>
+    <li>Mobile no: <br> 7981067903</li>
+    <li>Email: <br> pj3833@srmist.edu.in</li>
+    <li>LinkedIn: <br> <a href="http://linkedin.com/in/prashanth-javaji-5268861b8">http://linkedin.com/in/prashanth-javaji-5268861b8</a> </li>
+</ul>
+        </div>
+        </div>
+
+
 </div>
-<div id="scrollbutton">
-<button onclick="scrollToTop()">
-	Click to scroll to top
-</button>
-</div>
-<div id="thank">Thankyou for visiting my website</div>
-<button id="myBtn"><a href="#top"> back to top👆🏼</a></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</div>
 </html>
