@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Prashanth Javaji</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      /* Color Palette */
+      --primary-bg: #002822; /* Base background color */
+      --header-bg: rgba(1, 42, 38, 0.75);
+      --text-primary: #f0f0f0;
+      --text-secondary: #a0b0c5;
+      --accent-color: #a8e6cf;
+      --accent-hover: #ffffff;
+
+      /* Glassmorphism & UI Variables */
+      --glass-bg: rgba(10, 64, 58, 0.3);
+      --glass-border: rgba(168, 230, 207, 0.3);
+      --glass-shadow: rgba(0, 0, 0, 0.2);
+
+      /* Font */
+      --font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      color: var(--text-primary);
+      background-color: var(--primary-bg);
+      padding-top: 80px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #particles-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Place it behind all content */
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: transparent;
+      padding: 20px 30px;
+      z-index: 1000;
+      transition: padding 0.3s ease, background-color 0.4s ease-out, box-shadow 0.4s ease;
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+    }
+
+    header.scrolled {
+        padding: 15px 30px;
+        background-color: var(--header-bg);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+        border-bottom-color: var(--glass-border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .nav-container .logo h1 {
+      font-size: 24px; color: #ffffff; margin: 0; font-weight: 700;
+      transition: font-size 0.3s ease;
+    }
+
+    header.scrolled .logo h1 { font-size: 22px; }
+
+    .nav-container nav {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none; color: var(--text-secondary); font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: color 0.3s ease;
+      position: relative; z-index: 2;
+    }
+
+    nav a:hover, nav a.active { color: var(--accent-hover); }
+    nav a::after { display: none; }
+
+    .magic-line {
+      position: absolute;
+      height: 100%;
+      background-color: var(--accent-color);
+      opacity: 0.2;
+      border-radius: 8px;
+      transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), width 0.4s cubic-bezier(0.5, 0, 0.5, 1);
+      z-index: 1;
+    }
+
+    .hamburger-btn { display: none; flex-direction: column; justify-content: space-around; width: 30px; height: 25px; background: transparent; border: none; cursor: pointer; padding: 0; }
+    .hamburger-btn .bar { width: 100%; height: 3px; background-color: var(--text-primary); border-radius: 5px; transition: all 0.3s ease-in-out; }
+    .hamburger-btn.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger-btn.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger-btn.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    .page {
+      padding: 80px 30px; max-width: 1200px; margin: 0 auto;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .page:last-of-type { border-bottom: none; }
+    .page-title {
+      font-size: 48px; color: #ffffff; margin-bottom: 60px; font-weight: 700;
+      text-align: center; display: block;
+    }
+
+    .glass-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px var(--glass-shadow);
+        backdrop-filter: blur(12px);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .glass-card:hover {
+        box-shadow: 0 12px 40px var(--glass-shadow);
+        transform: translateY(-5px);
+    }
+
+    #page-bio .about-container {
+      display: flex; flex-wrap: wrap; gap: 40px; align-items: center;
+    }
+    #page-bio .profile {
+      flex: 1 1 300px; text-align: center; padding: 40px;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    .profile-img {
+      width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+      border: 4px solid var(--accent-color); margin-bottom: 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .profile h2 { margin: 10px 0 5px 0; font-size: 28px; color: #ffffff; }
+    .profile .title { margin: 5px 0 20px 0; font-size: 16px; font-weight: 400; color: var(--text-secondary); min-height: 48px; line-height: 1.5; }
+    .title .type-cursor { display: inline-block; width: 10px; height: 1.2em; background-color: var(--accent-hover); animation: blink 1s infinite; margin-left: 4px; vertical-align: middle; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .profile .social-links a { text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s ease; }
+    .profile .social-links a:hover { transform: scale(1.05); }
+    .profile .social-links svg { width: 28px; height: 28px; fill: var(--accent-color); transition: fill 0.3s ease; }
+    .profile .social-links a:hover svg { fill: var(--accent-hover); }
+    .profile .social-links a span { font-size: 16px; font-weight: 500; color: var(--accent-color); transition: color 0.3s ease; }
+    .profile .social-links a:hover span { color: var(--accent-hover); }
+    #page-bio .about-content { flex: 2 1 600px; }
+    #page-bio .about-content h3 { font-size: 32px; color: #ffffff; margin-bottom: 20px; font-weight: 600; }
+    #page-bio .about-content p { font-size: 17px; line-height: 1.8; color: var(--text-primary); text-align: justify; margin-bottom: 20px; }
+    .cv-button { display: inline-block; margin-top: 20px; padding: 14px 28px; background-color: var(--accent-color); color: var(--primary-bg); font-weight: 600; text-decoration: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
+    .cv-button:hover { background-color: var(--accent-hover); transform: translateY(-3px) scale(1.02); box-shadow: 0 4px 15px rgba(168, 230, 207, 0.4); }
+    .education-section ul li { background: none; padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--glass-border); transition: transform 0.3s ease, background-color 0.3s ease; }
+    .education-section ul li:hover { background-color: rgba(10, 64, 58, 0.5); transform: translateX(5px); }
+    .education-section h3 { font-size: 22px; color: #fff; margin-bottom: 20px; border-left: 4px solid var(--accent-color); padding-left: 10px; }
+    .education-section ul { list-style: none; padding-left: 0; }
+    .education-section li strong { font-size: 18px; color: #fff; display: block; margin-bottom: 5px; }
+    .edu-details { display: block; font-size: 14px; color: var(--text-secondary); margin-top: 8px; }
+
+    .skill-category { padding: 30px; margin-bottom: 25px; }
+    .skill-category h3 { font-size: 22px; color: #ffffff; margin-top: 0; margin-bottom: 25px; border-left: 4px solid var(--accent-color); padding-left: 15px; }
+    .skill-capsules { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill-capsule { display: inline-block; background-color: rgba(0, 31, 26, 0.6); border: 1px solid var(--glass-border); padding: 10px 18px; border-radius: 20px; font-size: 15px; color: var(--accent-color); font-weight: 500; transition: all 0.2s ease; }
+    .skill-capsule:hover { transform: translateY(-3px); background-color: var(--accent-color); color: var(--primary-bg); }
+
+    .experience-container { max-width: 900px; margin: 0 auto; position: relative; }
+    .experience-container::before {
+        content: ''; position: absolute; top: 25px; left: 24px; bottom: 0;
+        width: 3px; background: var(--glass-border); z-index: -1;
+    }
+    .timeline-filler {
+        position: absolute; top: 25px; left: 24px; width: 3px; height: 0;
+        background: var(--accent-color); z-index: -1;
+        transition: height 1s ease-out;
+    }
+    .experience-container.in-view .timeline-filler {
+        height: 100%;
+    }
+    .timeline-item {
+      display: flex; align-items: flex-start; margin-bottom: 50px; position: relative; padding: 25px;
+    }
+    .timeline-icon {
+      width: 50px; height: 50px; background-color: var(--accent-color); color: var(--primary-bg);
+      font-size: 22px; font-weight: bold; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin-right: 25px; flex-shrink: 0; border: 3px solid #012a26; z-index: 1;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .timeline-item:hover .timeline-icon { transform: rotate(360deg) scale(1.1); }
+    .timeline-content h3 { margin: 0 0 8px 0; font-size: 22px; color: #ffffff; font-weight: 600; }
+    .timeline-content .company { color: var(--accent-hover); font-weight: 500; margin: 4px 0; }
+    .timeline-content .duration { font-size: 14px; color: var(--text-secondary); margin-bottom: 15px; }
+    .timeline-content ul { padding-left: 20px; color: var(--text-primary); margin-top: 10px; }
+    .timeline-content ul li { margin-bottom: 8px; list-style-type: '✓'; padding-left: 10px; line-height: 1.7; }
+
+    .projects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
+    .project-card { display: flex; flex-direction: column; padding: 30px; border-top: 4px solid transparent; }
+    .project-card:hover { border-top-color: var(--accent-color); }
+    .project-card h3 { margin-top: 0; font-size: 22px; color: #ffffff; font-weight: 600; margin-bottom: 8px; }
+    .project-date { font-weight: 400; font-size: 13px; color: var(--text-secondary); margin-bottom: 15px; display: block; }
+    .project-card p { font-size: 16px; color: var(--text-primary); line-height: 1.7; text-align: justify; flex-grow: 1; margin-bottom: 20px; }
+    .tags { margin-bottom: 20px; flex-wrap: wrap; }
+    .tags span { display: inline-block; background-color: rgba(0, 31, 26, 0.8); padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; color: var(--accent-color); font-weight: 500; transition: background-color 0.3s ease; }
+    .project-card:hover .tags span { background-color: var(--primary-bg); }
+    .project-links-container { margin-top: auto; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; margin-right: 10px; font-size: 15px; color: var(--accent-color); text-decoration: none; font-weight: 500; padding: 10px 18px; border: 1px solid var(--accent-color); border-radius: 8px; transition: all 0.3s ease-in-out; }
+    .project-link:hover { background-color: var(--accent-color); color: var(--primary-bg); border-color: var(--accent-color); }
+    .project-link span { transition: transform 0.3s ease; }
+    .project-link:hover span { transform: translateX(4px); }
+
+    #page-contact .contact-container { padding: 40px; }
+    #page-contact .contact-list { list-style: none; padding: 0; }
+    #page-contact .contact-list li { font-size: 18px; color: var(--text-primary); margin-bottom: 25px; display: flex; align-items: center; transition: transform 0.3s ease; }
+    #page-contact .contact-list li:hover { transform: translateX(5px); }
+    #page-contact .contact-list li svg { margin-right: 15px; fill: var(--accent-color); width: 28px; height: 28px; transition: fill 0.3s ease; }
+    #page-contact .contact-list li:hover svg { fill: var(--accent-hover); }
+    #page-contact .contact-list li strong { color: #ffffff; min-width: 80px; display: inline-block; }
+    #page-contact .contact-list a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
+    #page-contact .contact-list a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    footer { text-align: center; padding: 40px 20px; background-color: #012a26; color: var(--text-secondary); font-size: 14px; margin-top: 0; border-top: 1px solid var(--glass-border); }
+
+    /* Mobile Navigation Styles */
+    @media (max-width: 768px) {
+      .nav-container {
+        position: relative; /* Crucial for absolute positioning of the mobile nav */
+      }
+      .nav-container nav {
+        display: none; /* Hidden by default on mobile */
+        flex-direction: column; 
+        width: 100%; 
+        position: absolute;
+        top: 100%; /* Position it right below the header */
+        left: 0; 
+        background-color: #012a26; /* Solid background for the dropdown */
+        padding: 10px 0; /* Adjust padding for dropdown items */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        z-index: 999; /* Ensure it's above other content but below header if header's z-index is higher */
+      }
+      /* This class is toggled by JavaScript to show the menu */
+      .nav-container nav.active { 
+        display: flex; 
+      }
+      nav a { 
+        padding: 12px 20px; /* Make tap targets a bit larger */
+        text-align: center; 
+        width: 100%; 
+        border-radius: 0; 
+        border-bottom: 1px solid rgba(168, 230, 207, 0.1); /* Subtle separator */
+      }
+      nav a:last-child {
+        border-bottom: none;
+      }
+      nav a.active { 
+        background-color: var(--primary-bg); 
+        color: var(--accent-hover);
+      }
+      .hamburger-btn { 
+        display: flex; /* Show the hamburger button on mobile */
+      }
+      .magic-line { 
+        display: none; /* Hide the desktop magic line on mobile */
+      }
+      .page-title { font-size: 36px; }
+      #page-bio .about-container, .projects-container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-bg"></div>
+
+  <header>
+    <div class="nav-container">
+      <div class="logo"><h1>Prashanth Javaji</h1></div>
+      <nav>
+        <div class="magic-line"></div>
+        <a href="#page-bio" data-page="bio" class="active">Bio</a>
+        <a href="#page-skills" data-page="skills">Skills</a>
+        <a href="#page-experience" data-page="experience">Experience</a>
+        <a href="#page-projects" data-page="projects">Projects</a>
+        <a href="#page-contact" data-page="contact">Contact</a>
+      </nav>
+      <button class="hamburger-btn">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="page-bio" class="page">
+        <div class="about-container">
+          <div class="profile glass-card" data-aos="fade-right" data-aos-delay="100">
+            <img src="image.jpg" alt="Prashanth" class="profile-img"/>
+            <h2>Prashanth Javaji</h2>
+            <p class="title"><span id="typing-text"></span><span class="type-cursor"></span></p>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/prashanth-javaji/" target="_blank" aria-label="LinkedIn Profile">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v9.39h3.06v-4.68c0-.99.5-1.95 1.48-1.95s1.5.96 1.5 1.95v4.68h3.12v.01zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69.75 1.68 1.68 0 0 0 0 1.88 1.68 1.68 0 0 0 1.69.74zM8.36 18.5H5V10h3.36v8.5z"></path></svg>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+  
+          <div class="about-content" data-aos="fade-left" data-aos-delay="200">
+            <h3>About Me</h3>
+            <p>
+              Aspiring Data Scientist pursuing a Master's degree at Rice University. Proficient in machine learning, data analysis, and statistical modeling. Passionate about leveraging data to drive informed decision-making. I am eager to contribute to a dynamic team and expand my skill set.
+            </p>
+             <p>
+            Throughout my academic career, I have actively engaged in coding competitions and project expos, demonstrating my ability to apply theoretical knowledge to real-world problems. I take great pride in being a dependable professional who performs well under duress regularly meets deadlines and exceeds expectations. I'm also dedicated to growing my professional network and learning new things regularly.
+          </p>
+            <a href="Prashanth_Javaji.pdf" download class="cv-button">⬇️ Download CV</a>
+            <div class="education-section" data-aos="fade-up" data-aos-delay="300">
+              <h3>Education</h3>
+              <ul>
+                <li>
+                  <strong>Master of Data Science</strong>
+                  Rice University<br>
+                  <span class="edu-details">Graduating December 2025 · GPA: 3.83 / 4.00</span>
+                </li>
+                <li>
+                  <strong>B.Tech in Computer Science and Engineering</strong>
+                  SRM Institute of Science & Technology<br>
+                  <span class="edu-details">Graduated May 2023 · GPA: 9.42 / 10.00</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section id="page-skills" class="page">
+          <div class="page-header"><h2 class="page-title">Core Competencies</h2></div>
+  
+          <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="100">
+              <h3>Programming Languages</h3>
+              <div class="skill-capsules">
+                  <span class="skill-capsule">C</span>
+                  <span class="skill-capsule">C++</span>
+                  <span class="skill-capsule">Python</span>
+                  <span class="skill-capsule">R-Programming</span>
+                  <span class="skill-capsule">SQL</span>
+                  <span class="skill-capsule">HTML</span>
+                  <span class="skill-capsule">CSS</span>
+              </div>
+          </div>
+  
+          <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="200">
+              <h3>Data Science</h3>
+              <div class="skill-capsules">
+                  <span class="skill-capsule">TensorFlow</span>
+                  <span class="skill-capsule">PyTorch</span>
+                  <span class="skill-capsule">Scikit-learn</span>
+                  <span class="skill-capsule">Generative AI</span>
+                  <span class="skill-capsule">Large Language Models (LLMs)</span>
+                  <span class="skill-capsule">BERT</span>
+              </div>
+          </div>
+  
+          <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="300">
+              <h3>Web & Cloud Technologies</h3>
+              <div class="skill-capsules">
+                  <span class="skill-capsule">Django</span>
+                  <span class="skill-capsule">AWS (EC2, S3, RDS)</span>
+                  <span class="skill-capsule">Snowflake</span>
+              </div>
+          </div>
+           <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="400">
+              <h3>Big Data</h3>
+              <div class="skill-capsules">
+                  <span class="skill-capsule">Apache Spark</span>
+                  <span class="skill-capsule">PySpark</span>
+                  <span class="skill-capsule">Hadoop (basic)</span>
+                  <span class="skill-capsule">Kafka (basic)</span>
+                   <span class="skill-capsule">NoSQL (MongoDB)</span>
+              </div>
+          </div>
+
+           <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="500">
+              <h3>Data Analysis Tools</h3>
+              <div class="skill-capsules">
+                   <span class="skill-capsule">Microsoft Excel</span>
+                   <span class="skill-capsule">NumPy</span>
+                   <span class="skill-capsule">Pandas</span>
+                   <span class="skill-capsule">Matplotlib</span>
+                   <span class="skill-capsule">Tableau</span>
+              </div>
+          </div>
+      </section>
+  
+      <section id="page-experience" class="page">
+        <div class="page-header"><h2 class="page-title">Professional Experience</h2></div>
+        <div class="experience-container">
+          <div class="timeline-filler"></div>
+          <div class="timeline-item glass-card" data-aos="fade-up">
+            <div class="timeline-icon">💼</div>
+            <div class="timeline-content">
+              <h3>Summer Associate (Data Analytics)</h3>
+              <p class="company">EDP Renewables North America LLC</p>
+              <p class="duration">June 2025 – August 2025</p>
+              <ul>
+                <li>Supporting the Market Operations team with data analysis, energy scheduling, and risk mitigation strategies.</li>
+                <li>Automating models, dashboards, and queries for performance monitoring and trading support.</li>
+                <li>Contributing to the development of machine learning models for power generation forecasting.</li>
+                <li>Integrating external data sources into analytics workflows to enhance decision-making.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item glass-card" data-aos="fade-up">
+            <div class="timeline-icon">💼</div>
+            <div class="timeline-content">
+              <h3>Data Analyst Internship</h3>
+              <p class="company">Rice University</p>
+              <p class="duration">December 2024 – Present</p>
+              <ul>
+                <li>Integrated and analyzed data for Rice University, utilizing Python, Snowflake, Oracle, and NoSQL databases to develop Tableau dashboards for enhanced reporting.</li>
+                <li>Collaborated with Facilities & Capital Planning to streamline operational workflows.</li>
+                <li>Leveraged data integration processes to optimize efficiency and enhance data visualization.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item glass-card" data-aos="fade-up">
+            <div class="timeline-icon">💼</div>
+            <div class="timeline-content">
+              <h3>Teaching Assistant (Course COMP 644)</h3>
+              <p class="company">Rice University</p>
+              <p class="duration">January 2025 – May 2025</p>
+              <p><em>COMP 644: Data Privacy and Security</em></p>
+              <ul>
+                <li>Assisted students with assignments, projects, and coursework-related queries, clarifying key concepts of privacy and security.</li>
+                <li>Conducted review sessions and discussions, breaking down complex theories and connecting them to real-world cybersecurity challenges.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section id="page-projects" class="page">
+          <div class="page-header"><h2 class="page-title">Featured Projects</h2></div>
+          <div class="projects-container">
+               <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Critics and User-Based Movie Recommendation System Using BERT Embeddings</h3>
+                <span class="project-date">(Feb 2025 – Apr 2025)</span>
+                <p>Built a content-based movie recommendation system leveraging BERT embeddings to encode movie metadata into a semantic vector space. Developed multiple similarity-based models (cosine, transformer, autoencoder, GNN) to recommend movies. Achieved significant performance improvements through optimization of embedding similarity and hybrid model fusion techniques.</p>
+                <div class="tags">
+                    <span>Python</span> <span>Pandas</span> <span>Scikit-Learn</span> <span>Transformers</span> <span>BERT</span> <span>TensorFlow</span>
+                </div>
+                <div class="project-links-container">
+                    <a href="https://drive.google.com/drive/folders/10kN7em3nV3IErmfXetU7Z2HzPa0ug6r_?usp=sharing" target="_blank" class="project-link"><span>View Project</span> →</a>
+                </div>
+            </div>
+
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Medical Image Report Generation (Deep learning Vision and Language Course project)</h3>
+                <span class="project-date">(Feb 2025 – Apr 2025)</span>
+                <p>Developed a multimodal AI system for lung cancer classification by integrating a CNN-based vision model (ResNet50) with a logistic regression-based NLP model. The system analyzed chest X-rays and extracted symptoms from synthetic clinical notes to predict diagnostic categories: Benign, Malignant, or Normal. Implemented feature-level fusion via a multilayer perceptron to enhance interpretability and mirror real-world diagnostic processes. Achieved up to 76% accuracy using vision data and improved model robustness through data augmentation and class balancing techniques.</p>
+                <div class="tags">
+                    <span>Python</span> <span>Logistic Regression</span> <span>Scikit-Learn</span> <span>Neural Networks</span> <span>Transformers</span> <span>TensorFlow</span> <span>ResNet50</span>
+                </div>
+                 <div class="project-links-container">
+                    <a href="#" class="project-link"><span>View Project</span> →</a> </div>
+            </div>
+
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Detection of AI generated text with BERT model</h3>
+                <span class="project-date">(Nov 2023 – May 2024)</span>
+                <p>Developed and fine-tuned a BERT-based classification model to distinguish AI-generated text from human-authored content, achieving 92% accuracy on a dataset of over 28,000 essays. Employed advanced preprocessing techniques including tokenization and BERT-specific input transformation, and rigorously evaluated the model using confusion matrices and performance metrics such as precision, recall, and F1-score. This work contributed to enhancing academic integrity by providing a reliable framework for detecting AI-generated text, empowering educators to identify and address AI-assisted writing.</p>
+                <div class="tags">
+                    <span>Python</span> <span>BERT</span> <span>NLP</span> <span>Data Analysis</span> <span>Scikit-Learn</span> <span>TensorFlow</span>
+                </div>
+                 <div class="project-links-container">
+                    <a href="https://github.com/PRASHANTHJAVAJI/Detection-of-AI-Generated-text-with-Bert-Model" target="_blank" class="project-link"><span>GitHub</span> →</a>
+                    <a href="https://ieeexplore.ieee.org/abstract/document/10692072" target="_blank" class="project-link"><span>Publication</span> →</a>
+                </div>
+            </div>
+
+            <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Prediction of Obesity Risk With logistic Regression</h3>
+                <span class="project-date">(Jun 2023 – Nov 2023)</span>
+                <p>Utilized logistic regression, random forest, and gradient boosting models to predict obesity risk using a dataset of over 1,100 individuals, achieving an accuracy of 85%. The project involved comprehensive data preprocessing, including handling missing values and applying feature scaling techniques, followed by hyperparameter optimization to enhance model performance. The analysis provided actionable insights to support public health initiatives aimed at predicting and mitigating obesity-related health risks.</p>
+                <div class="tags">
+                    <span>Python</span> <span>Data Analysis</span> <span>Machine Learning</span> <span>Logistic Regression</span> <span>Random Forest</span> <span>Gradient Boosting</span>
+                </div>
+                <div class="project-links-container">
+                    <a href="https://github.com/PRASHANTHJAVAJI/Prediction-of-obesity-risk-with-Logistic-Regression" target="_blank" class="project-link"><span>GitHub</span> →</a>
+                </div>
+            </div>
+          </div>
+      </section>
+  
+      <section id="page-contact" class="page">
+        <div class="page-header"><h2 class="page-title">Get In Touch</h2></div>
+        <div class="contact-container glass-card" data-aos="zoom-in">
+          <p style="text-align: center; color: var(--text-secondary); margin-top: -20px; margin-bottom: 40px; font-size: 18px;">I'm currently seeking new opportunities. Let's connect!</p>
+          <ul class="contact-list">
+             <li>
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+                <strong>Email:</strong>&nbsp; <a href="mailto:Prashanth.javaji@RICE.EDU">Prashanth.javaji@RICE.EDU</a>
+            </li>
+            <li>
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>
+                <strong>Phone:</strong>&nbsp; <a href="tel:+13465998688">(346) 599-8688</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v9.39h3.06v-4.68c0-.99.5-1.95 1.48-1.95s1.5.96 1.5 1.95v4.68h3.12v.01zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69.75 1.68 1.68 0 0 0 0 1.88 1.68 1.68 0 0 0 1.69.74zM8.36 18.5H5V10h3.36v8.5z"></path></svg>
+              <strong>LinkedIn:</strong>&nbsp; <a href="https://www.linkedin.com/in/prashanth-javaji/" target="_blank">prashanth-javaji</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+  </main>
+  
+  <footer>
+    <p>&copy; <span id="currentYear"></span> Prashanth Javaji. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      AOS.init({ duration: 800, once: true, offset: 100, easing: 'ease-in-out-quad' });
+
+      // Particle animation initialization with brighter particles
+      await tsParticles.load("particles-bg", {
+        fpsLimit: 60,
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#a8e6cf" }, 
+          shape: { type: "circle" },
+          opacity: {
+            value: 0.7, 
+            random: true,
+            anim: { enable: true, speed: 1, opacity_min: 0.15, sync: false }, 
+          },
+          size: {
+            value: 2,
+            random: true,
+            anim: { enable: false },
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#a8e6cf", 
+            opacity: 0.3, 
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 0.5,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: { enable: false, rotateX: 600, rotateY: 1200 },
+          },
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: false }, 
+            onclick: { enable: false },
+            resize: true,
+          },
+        },
+        retina_detect: true,
+      });
+
+      const header = document.querySelector('header');
+      const nav = document.querySelector('header nav');
+      const navLinks = document.querySelectorAll('header nav a');
+      const sections = document.querySelectorAll('.page');
+      const hamburgerBtn = document.querySelector('.hamburger-btn');
+      const magicLine = document.querySelector('.magic-line');
+      const profileCard = document.querySelector('.profile');
+      const timelineContainer = document.querySelector('.experience-container');
+      const typingTextElement = document.getElementById('typing-text');
+      const typeCursor = document.querySelector('.type-cursor');
+
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+      });
+      
+      hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
+
+      function updateMagicLine(activeLink) {
+        if (!activeLink || !magicLine) return;
+        // Ensure nav is not the mobile dropdown when calculating for desktop magic line
+        if (window.innerWidth > 768) { 
+            const linkRect = activeLink.getBoundingClientRect();
+            const navRect = nav.getBoundingClientRect(); // nav here is the desktop nav
+            magicLine.style.width = `${linkRect.width}px`;
+            magicLine.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+        }
+      }
+      // Delay initial magic line update to ensure layout is stable
+      setTimeout(() => {
+        const initialActiveLink = nav.querySelector('a.active');
+        if (initialActiveLink) {
+            updateMagicLine(initialActiveLink);
+        }
+      }, 100);
+
+
+      const textToType = "Summer Associate at EDP Renewables North America LLC";
+      let charIndex = 0;
+      function type() {
+          if (charIndex < textToType.length) {
+              typingTextElement.textContent += textToType.charAt(charIndex);
+              charIndex++;
+              setTimeout(type, 25);
+          } else {
+              if(typeCursor) {
+                typeCursor.style.display = 'none';
+              }
+          }
+      }
+      setTimeout(type, 500);
+      
+      if (profileCard) {
+        profileCard.addEventListener('mousemove', (e) => {
+            const rect = profileCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const { width, height } = rect;
+            const rotateX = (y / height - 0.5) * -15;
+            const rotateY = (x / width - 0.5) * 15;
+            profileCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        profileCard.addEventListener('mouseleave', () => {
+            profileCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        });
+      }
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Close mobile menu if active
+          if (nav.classList.contains('active')) {
+            nav.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+          }
+          const targetId = link.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            let headerOffset = header.offsetHeight;
+            // On mobile, the nav might be part of the header's height when calculating offset,
+            // but it's positioned absolutely so it shouldn't affect the scroll target.
+            // However, ensure the calculation is for the visible fixed header part.
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const activeLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+                  if(activeLink){
+                    if (document.querySelector('nav a.active')) {
+                        document.querySelector('nav a.active').classList.remove('active');
+                    }
+                    activeLink.classList.add('active');
+                    updateMagicLine(activeLink); // Update magic line based on scroll
+                  }
+
+                  if(entry.target.id === 'page-experience' && timelineContainer) {
+                      timelineContainer.classList.add('in-view');
+                  }
+              }
+          });
+      }, { rootMargin: '-40% 0px -60% 0px' });
+
+      sections.forEach(section => observer.observe(section));
+
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
